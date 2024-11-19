@@ -1,5 +1,4 @@
 import './App.css'
-import conf from './conf/config'
 
 function App() {
   // const [count, setCount] = useState(0)
