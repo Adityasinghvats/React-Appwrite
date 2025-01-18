@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 //it is a container for accessing control on auth
 
- export default function Protected({
+ export default function AuthLayout({
     children,
     authentication = true
  }) {

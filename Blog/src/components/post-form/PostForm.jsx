@@ -1,7 +1,7 @@
 import React , {useCallback} from 'react'
 import { useForm } from 'react-hook-form'
 import {Button , Input, Select, RTE} from '../index.js'
-import appwriteService from "../../appwrite/config.service.js"
+import service from "../../appwrite/config.service.js"
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -20,11 +20,11 @@ function PostForm({post}) {
 
     const submit = async (data)=> {
         if(post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null
+            const file = data.image[0] ? await service.uploadFile(data.image[0]) : null
             if(file){
-                appwriteService.deleteFile(post.featuredImage)
+                service.deleteFile(post.featuredImage)
             }
-            const dbPost = await appwriteService.updatePost(
+            const dbPost = await service.updatePost(
                 post.$id, {
                     ...data,
                     featuredImage: file ? file.$id : undefined
@@ -34,12 +34,12 @@ function PostForm({post}) {
                 navigate(`/post/${dbPost.$id}`)
             }
         }else {
-            const file = data.image[0] ? await appwriteService.uplaodFile(data.image[0]) : null
+            const file = data.image[0] ? await service.uplaodFile(data.image[0]) : null
 
             if(file){
                 const fileId = file.$id
                 data.featuredImage = fileId
-                const dbPost = await appwriteService.createPost({
+                const dbPost = await service.createPost({
                     ...data,
                     usedId : userData.$id,
                 })
@@ -103,7 +103,7 @@ function PostForm({post}) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={service.getFilePreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
