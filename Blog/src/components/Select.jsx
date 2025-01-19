@@ -1,7 +1,7 @@
 import React , {useId} from 'react'
 
 function Select({
-    options = [],
+    options,
     label,
     className = "",
     ...props
@@ -18,7 +18,7 @@ function Select({
         >
             {/* meant to for null safety */}
             {options?.map((option) => (
-                <option key={option} value={options}>
+                <option key={option} value={option}>
                     {option}
                 </option>
             ))}

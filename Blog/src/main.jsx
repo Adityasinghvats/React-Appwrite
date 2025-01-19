@@ -1,3 +1,5 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
@@ -12,6 +14,7 @@ import Allposts from './pages/Allposts.jsx'
 import Addpost from './pages/Addpost.jsx'
 import Editpost from './pages/Editpost.jsx'
 import Post from './pages/Post.jsx'
+import SignUp from './components/SignUp.jsx'
 
 const router = createBrowserRouter([
   {
@@ -33,12 +36,20 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: (
-          <AuthLayout authentication>
-            {" "}
-            <Allposts/>
+          <AuthLayout authentication={false}>
+            <SignUp/>
           </AuthLayout>
         )
       },
+      {
+        path: "/all-posts",
+        element: (
+            <AuthLayout authentication>
+                {" "}
+                <Allposts />
+            </AuthLayout>
+        ),
+       },
       {
           path: "/add-post",
           element: (
@@ -65,10 +76,10 @@ const router = createBrowserRouter([
   }
 ])
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router}/>
     </Provider>
-  </StrictMode>,
+  </React.StrictMode>,
 )

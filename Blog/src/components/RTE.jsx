@@ -15,6 +15,7 @@ export default function RTE({
     // tracking field for onChange
     render={({field :{onChange}})=>(
         <Editor
+        apiKey='o4lv0i6koqnwp5wm3hqow018mtt5z6obs9xrl3psf2cccxe5'
         initialValue={defaultValue}
         init={{
             initialValue: defaultValue,
